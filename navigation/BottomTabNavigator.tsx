@@ -17,7 +17,7 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="TabThree"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
         name="TabOne"
@@ -87,11 +87,11 @@ const TabThreeStack = createStackNavigator<TabThreeParamList>();
 
 function TabThreeNavigator() {
   return (
-    <TabThreeStack.Navigator>
+    <TabThreeStack.Navigator headerMode="none">
       <TabThreeStack.Screen
         name="TabThreeScreen"
         component={TabThreeScreen}
-        options={{ headerTitle: 'Records' }}
+        options={{ headerTitle: 'Records'}}
       />
     </TabThreeStack.Navigator>
   );

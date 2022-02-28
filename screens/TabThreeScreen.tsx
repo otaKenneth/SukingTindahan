@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 
-import EditScreenInfo from '../components/RecordScreen';
+import RecordScreen from '../components/RecordScreen';
 import { Text, View } from '../components/Themed';
 
 export default function TabThreeScreen() {
   return (
-    <View style={styles.container}>
-      <EditScreenInfo path="/screens/TabThreeScreen.js" />
-    </View>
+    <RecordScreen path="/screens/TabThreeScreen.js" />
   );
 }
 
