@@ -17,7 +17,7 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabThree"
+      initialRouteName="TabOne"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
         name="TabOne"
@@ -28,16 +28,16 @@ export default function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen 
-        name="TabThree"
-        component={TabThreeNavigator}
+        name="TabTwo"
+        component={TabTwoNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-list" color={color} />,
           title: 'Records'
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="TabThree"
+        component={TabThreeNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-cog" color={color} />,
           title: 'Settings'
@@ -77,7 +77,7 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Settings' }}
+        options={{ headerTitle: 'Records' }}
       />
     </TabTwoStack.Navigator>
   );
@@ -91,7 +91,7 @@ function TabThreeNavigator() {
       <TabThreeStack.Screen
         name="TabThreeScreen"
         component={TabThreeScreen}
-        options={{ headerTitle: 'Records'}}
+        options={{ headerTitle: 'Settings'}}
       />
     </TabThreeStack.Navigator>
   );
