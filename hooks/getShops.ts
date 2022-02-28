@@ -21,6 +21,12 @@ const shops = () => {
         },{
           id: '7',
           name: 'Meri Mi Marry'
+        },{
+          id: '8',
+          name: 'Aling Marry'
+        },{
+          id: '9',
+          name: 'Aling Emily D'
         }
     ];
 }

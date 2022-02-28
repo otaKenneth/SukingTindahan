@@ -5,6 +5,7 @@ const items = [
 		type: '561',
 		item: 'Chicharon',
 		price: '100.23',
+		stock: '5',
 		data: '009876589'
 	},{
 		id: '2',
@@ -12,6 +13,7 @@ const items = [
 		type: '561',
 		item: 'Hotdog',
 		price: '50.00',
+		stock: '5',
 		data: '10123456809'
 	},{
 		id: '3',
@@ -19,6 +21,7 @@ const items = [
 		type: '561',
 		item: 'Diaper',
 		price: '50.00',
+		stock: '5',
 		data: '12300458972'
 	},{
 		id: '4',
@@ -26,6 +29,7 @@ const items = [
 		type: '561',
 		item: 'Diaper XL',
 		price: '60.00',
+		stock: '5',
 		data: '1023456789'
 	},{
 		id: '5',
@@ -33,6 +37,7 @@ const items = [
 		type: '561',
 		item: 'Chicharon',
 		price: '100.23',
+		stock: '5',
 		data: '009876589'
 	},{
 		id: '6',
@@ -40,6 +45,7 @@ const items = [
 		type: '561',
 		item: 'Hotdog',
 		price: '50.00',
+		stock: '5',
 		data: '10123456809'
 	},{
 		id: '7',
@@ -47,6 +53,7 @@ const items = [
 		type: '561',
 		item: 'Diaper',
 		price: '50.00',
+		stock: '5',
 		data: '12300458972'
 	},{
 		id: '8',
@@ -54,6 +61,7 @@ const items = [
 		type: '561',
 		item: 'Diaper XL',
 		price: '60.00',
+		stock: '5',
 		data: '1023456789'
 	},{
 		id: '9',
@@ -61,6 +69,7 @@ const items = [
 		type: '561',
 		item: 'Diaper XL',
 		price: '60.00',
+		stock: '5',
 		data: '1023456789'
 	},{
 		id: '10',
@@ -68,6 +77,7 @@ const items = [
 		type: '561',
 		item: 'Diaper',
 		price: '50.00',
+		stock: '5',
 		data: '12300458972'
 	},{
 		id: '11',
@@ -75,6 +85,7 @@ const items = [
 		type: '561',
 		item: 'Chicharon',
 		price: '100.23',
+		stock: '5',
 		data: '009876589'
 	},{
 		id: '12',
@@ -82,6 +93,7 @@ const items = [
 		type: '561',
 		item: 'Hotdog',
 		price: '50.00',
+		stock: '5',
 		data: '10123456809'
 	},{
 		id: '13',
@@ -89,6 +101,7 @@ const items = [
 		type: '561',
 		item: 'Chicharon',
 		price: '100.23',
+		stock: '5',
 		data: '009876589'
 	},{
 		id: '14',
@@ -96,6 +109,7 @@ const items = [
 		type: '561',
 		item: 'Chicharon',
 		price: '100.23',
+		stock: '5',
 		data: '009876589'
 	},{
 		id: '15',
@@ -103,6 +117,7 @@ const items = [
 		type: '561',
 		item: 'Diaper',
 		price: '50.00',
+		stock: '5',
 		data: '12300458972'
 	},{
 		id: '16',
@@ -110,6 +125,7 @@ const items = [
 		type: '561',
 		item: 'Chicharon',
 		price: '100.23',
+		stock: '5',
 		data: '009876589'
 	},{
 		id: '17',
@@ -117,6 +133,7 @@ const items = [
 		type: '561',
 		item: 'Diaper',
 		price: '50.00',
+		stock: '5',
 		data: '12300458972'
 	},{
 		id: '18',
@@ -124,6 +141,7 @@ const items = [
 		type: '561',
 		item: 'Hotdog',
 		price: '50.00',
+		stock: '5',
 		data: '10123456809'
 	},
 ];
