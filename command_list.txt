@@ -1,1 +1,4 @@
 npm start/expo start
+
+https://reactnative.dev/docs/components-and-apis
+https://icons.expo.fyi/
