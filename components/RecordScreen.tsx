@@ -25,7 +25,7 @@ const Item = ({ title, onPress }) => (
 function ShopScreen({ navigation }) {
     const renderItem = ({ item, index }) => {
         return (
-            <Item key={index} title={item.name} onPress={() => { shop = item.id; navigation.navigate('PriceList', { name: 'Price List' }) }} />
+            <Item key={index} title={item.name} onPress={() => { shop = item.id; navigation.navigate('Price List', { name: 'Price List' }) }} />
         )
     };
 
@@ -44,7 +44,7 @@ function PriceListScreen({ navigation }) {
     items = getItems(shop);
 
     const renderItem = ({ item, index }) => (
-        <TouchableOpacity style={styles.item} onPress={() => { item = item.id; navigation.navigate('Edit', { name: 'Edit Screen' }) }}>
+        <TouchableOpacity style={styles.item} onPress={() => { item = item; navigation.navigate('Edit', { name: 'Edit Screen', data: item, }) }}>
             <Text style={styles.prodname}>{item.item}</Text>
             <Text style={styles.prodprice}>{item.price}</Text>
             <Text style={styles.prodstock}>{item.stock}</Text>
@@ -52,9 +52,14 @@ function PriceListScreen({ navigation }) {
     )
 
     return (
-        <View style={{ width: '100%', flex: 1 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginVertical: 10 }}>
-                <Button title="Send" color="blue" />
+        <View>
+            <View style={{ marginVertical: 10, flexDirection: "row", justifyContent: "space-around" }}>
+                <TouchableOpacity style={{ flex: 0.4 }}>
+                    <Ionicons name="ios-send" size={30} color="#61e64c" style={{ textAlign: "center"}}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ flex: 0.4 }} onPress={ () => {navigation.navigate('Add', { name: 'Edit Screen' })} }>
+                    <Ionicons name="ios-add-circle-outline" size={30} color="#4cc2e6" style={{ textAlign: "center"}} />
+                </TouchableOpacity>
             </View>
             <FlatList
                 data={items}
@@ -71,7 +76,8 @@ export default function RecordScreen({ path }: { path: string }) {
     return (
         <RecordStack.Navigator>
             <RecordStack.Screen name="Shops" component={ShopScreen} />
-            <RecordStack.Screen name="PriceList" component={PriceListScreen} />
+            <RecordStack.Screen name="Add" component={EditScreen} />
+            <RecordStack.Screen name="Price List" component={PriceListScreen} />
             <RecordStack.Screen name="Edit" component={EditScreen} />
         </RecordStack.Navigator>
     );
@@ -97,5 +103,11 @@ const styles = StyleSheet.create({
     },
     prodstock: {
         fontSize: 12,
+    },
+    addButton: {
+        backgroundColor: '#5afc03',
+        padding: 15,
+        marginVertical: 5,
+        color: "#191a19", 
     }
 });
