@@ -11,6 +11,7 @@ export default function EditScreenInfo({ path }: { path: string }, { item }: { i
     const [itemName, setText] = useState();
     const [itemPrice, setPrice] = useState();
     const [itemCount, setCount] = useState();
+    
     return (
         <ScrollView>
             <View>
@@ -42,12 +43,6 @@ export default function EditScreenInfo({ path }: { path: string }, { item }: { i
                 </View>
             </View>
         </ScrollView>
-    );
-}
-
-function handleHelpPress() {
-    WebBrowser.openBrowserAsync(
-        'https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet'
     );
 }
 

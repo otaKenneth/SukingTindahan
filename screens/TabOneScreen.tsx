@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Button, ScrollView, StyleSheet } from 'react-native';
+import { Alert, Button, Modal, Pressable, ScrollView, StyleSheet } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import { Text, View } from '../components/Themed';
-import { TextInput } from 'react-native-gesture-handler';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function TabOneScreen() {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [count, setCount] = useState();
+    const [scannedData, setData] = useState();
+    const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -19,7 +21,7 @@ export default function TabOneScreen() {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+        setData(data)
     };
 
     if (hasPermission === null) {
@@ -31,16 +33,48 @@ export default function TabOneScreen() {
 
     return (
         <View style={styles.container}>
-            <View style={{ height: '100%' }}>
+            <View style={{ height: '100%', justifyContent: 'center' }}>
                 <BarCodeScanner
                     onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                     style={styles.camera}
                 />
                 {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
             </View>
-            <View style={{ position: 'absolute', bottom: 0, width: '100%' }}>
-                <Button title={'Add Manually'} color='#4cc2e6' onPress={() => { alert('Shit') }}/>
-                <Button title={'Multiple'} color='#f7731b' onPress={() => { alert('multiple of the item') }}/>
+            <Modal
+                animationType='slide'
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={ () => {
+                    setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={{justifyContent: 'center', flex: 1,}}>
+                    <View style={styles.modalView}>
+                        <Text style={{color: '#000'}}>Shit!! I'm open</Text>
+                        <TextInput
+                          style={styles.textInput}
+                          defaultValue={scannedData}
+                        />
+                        <Pressable
+                          style={{...styles.buttonStyle, backgroundColor: '#345'}}
+                          onPress={() => { setModalVisible(!modalVisible) }}
+                        >
+                            <Text style={{color: '#000'}}>Close</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
+            <View style={{ position: 'absolute', bottom: 0, width: '100%', paddingVertical: 10, flexDirection: 'row', justifyContent: 'space-around' }}>
+                <TouchableOpacity style={{ ...styles.buttonStyle, backgroundColor: '#4cc2e6' }}
+                  onPress={ () => { setModalVisible(true); }}
+                >
+                    <Text style={{ fontWeight: 'bold', fontSize: 21, textAlign: 'center'}}>Add Manually</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{ ...styles.buttonStyle, backgroundColor: '#f7731b' }}
+                  onPress={ () => { setModalVisible(true); }}
+                >
+                    <Text style={{ fontWeight: 'bold', fontSize: 21, textAlign: 'center'}}>Multiply</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );
@@ -71,9 +105,27 @@ const styles = StyleSheet.create({
         height: 1,
         width: '80%',
     },
+    buttonStyle: {
+        paddingVertical: 15, paddingHorizontal: 10
+    },
     textInput: {
-        height: 40, paddingHorizontal: 10, marginHorizontal: 10, flex: 1,
-        borderColor: "white", borderStyle: "solid", borderWidth: 2, borderRadius: 10,
-        color: "white"
+        height: 40, paddingHorizontal: 10, marginHorizontal: 10,
+        borderColor: "black", borderStyle: "solid", borderWidth: 2, borderRadius: 10,
+    },
+    modalView: {
+        height: '80%',
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5
     }
 });
