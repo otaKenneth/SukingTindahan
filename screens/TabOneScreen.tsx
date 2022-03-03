@@ -50,17 +50,29 @@ export default function TabOneScreen() {
             >
                 <View style={{justifyContent: 'center', flex: 1,}}>
                     <View style={styles.modalView}>
-                        <Text style={{color: '#000'}}>Shit!! I'm open</Text>
-                        <TextInput
-                          style={styles.textInput}
-                          defaultValue={scannedData}
-                        />
-                        <Pressable
-                          style={{...styles.buttonStyle, backgroundColor: '#345'}}
-                          onPress={() => { setModalVisible(!modalVisible) }}
-                        >
-                            <Text style={{color: '#000'}}>Close</Text>
-                        </Pressable>
+                        <View style={{height: '80%', width: '100%', backgroundColor: 'white'}}>
+                            <Text style={{color: '#000'}}>Item Code: {scannedData}</Text>
+                            <Text style={{color: '#000'}}>Item Name: Petroleum Jelly</Text>
+                            <TextInput
+                              style={styles.textInput}
+                              placeholder='1'
+                              keyboardType='number-pad'
+                            />
+                        </View>
+                        <View style={{ width: '100%', backgroundColor: '#fff', flexDirection: 'row', justifyContent: 'space-around'}}>
+                            <Pressable
+                              style={{...styles.buttonStyle, backgroundColor: '#e82615', flex: 0.4 }}
+                              onPress={() => { setModalVisible(!modalVisible) }}
+                            >
+                                <Text style={{color: '#fff', textAlign: 'center'}}>Close</Text>
+                            </Pressable>
+                            <Pressable
+                              style={{...styles.buttonStyle, backgroundColor: '#345', flex: 0.4 }}
+                              onPress={() => { setModalVisible(!modalVisible) }}
+                            >
+                                <Text style={{color: '#fff', textAlign: 'center'}}>Submit</Text>
+                            </Pressable>
+                        </View>
                     </View>
                 </View>
             </Modal>
@@ -106,14 +118,16 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     buttonStyle: {
-        paddingVertical: 15, paddingHorizontal: 10
+        paddingVertical: 15, paddingHorizontal: 20,
+        borderRadius: 15,
     },
     textInput: {
-        height: 40, paddingHorizontal: 10, marginHorizontal: 10,
+        height: 40, paddingHorizontal: 10, marginVertical: 20,
         borderColor: "black", borderStyle: "solid", borderWidth: 2, borderRadius: 10,
+        textAlign: 'right'
     },
     modalView: {
-        height: '80%',
+        height: '30%',
         margin: 20,
         backgroundColor: "white",
         borderRadius: 20,
