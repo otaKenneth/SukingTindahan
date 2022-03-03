@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, Button, Modal, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { Alert, Button, KeyboardAvoidingView, Modal, Pressable, ScrollView, StyleSheet } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
 import { Text, View } from '../components/Themed';
@@ -8,7 +8,7 @@ import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 export default function TabOneScreen() {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
-    const [count, setCount] = useState();
+    const [count, setCount] = useState('1');
     const [scannedData, setData] = useState();
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -48,6 +48,7 @@ export default function TabOneScreen() {
                     setModalVisible(!modalVisible);
                 }}
             >
+                
                 <View style={{justifyContent: 'center', flex: 1,}}>
                     <View style={styles.modalView}>
                         <View style={{height: '80%', width: '100%', backgroundColor: 'white'}}>
@@ -55,6 +56,8 @@ export default function TabOneScreen() {
                             <Text style={{color: '#000'}}>Item Name: Petroleum Jelly</Text>
                             <TextInput
                               style={styles.textInput}
+                              autoFocus={true}
+                              onChange={newCount => setCount(newCount)}
                               placeholder='1'
                               keyboardType='number-pad'
                             />
@@ -68,7 +71,7 @@ export default function TabOneScreen() {
                             </Pressable>
                             <Pressable
                               style={{...styles.buttonStyle, backgroundColor: '#345', flex: 0.4 }}
-                              onPress={() => { setModalVisible(!modalVisible) }}
+                              onPress={() => { setModalVisible(!modalVisible); setScanned(false); }}
                             >
                                 <Text style={{color: '#fff', textAlign: 'center'}}>Submit</Text>
                             </Pressable>
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
         textAlign: 'right'
     },
     modalView: {
-        height: '30%',
+        height: 230,
         margin: 20,
         backgroundColor: "white",
         borderRadius: 20,
