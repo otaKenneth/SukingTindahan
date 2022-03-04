@@ -5,11 +5,22 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import { Text, View } from '../components/Themed';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
+import Items from '../hooks/getItems';
+var items = Items.getItems(1);
+
 export default function TabOneScreen() {
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
     const [count, setCount] = useState('1');
-    const [scannedData, setData] = useState();
+    const [scannedData = {
+        barcode: '',
+        item: '',
+        type: ''
+    }, setData] = useState({
+        barcode: '',
+        item: '',
+        type: ''
+    });
     const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
@@ -21,8 +32,25 @@ export default function TabOneScreen() {
 
     const handleBarCodeScanned = ({ type, data }) => {
         setScanned(true);
-        setData(data)
+        var scanned = Items.getItem(items, data);
+        if (scanned) {
+            setData(scanned);
+        } else {
+            setData({
+                barcode: '',
+                item: 'No item found',
+                type: ''
+            });
+        }
     };
+
+    const sestDefaults = () => {
+        setData({
+            barcode: '',
+            item: 'No item found',
+            type: ''
+        });
+    }
 
     if (hasPermission === null) {
         return <Text>Requesting for camera permission</Text>;
@@ -52,8 +80,8 @@ export default function TabOneScreen() {
                 <View style={{justifyContent: 'center', flex: 1,}}>
                     <View style={styles.modalView}>
                         <View style={{height: '80%', width: '100%', backgroundColor: 'white'}}>
-                            <Text style={{color: '#000'}}>Item Code: {scannedData}</Text>
-                            <Text style={{color: '#000'}}>Item Name: Petroleum Jelly</Text>
+                            <Text style={{color: '#000'}}>Item Code: {scannedData.barcode}</Text>
+                            <Text style={{color: '#000'}}>Item Name: {scannedData.item}</Text>
                             <TextInput
                               style={styles.textInput}
                               autoFocus={true}
@@ -79,16 +107,23 @@ export default function TabOneScreen() {
                     </View>
                 </View>
             </Modal>
-            <View style={{ position: 'absolute', bottom: 0, width: '100%', paddingVertical: 10, flexDirection: 'row', justifyContent: 'space-around' }}>
+            <View style={{ position: 'absolute', bottom: 55, width: '100%', paddingVertical: 10, flexDirection: 'row', justifyContent: 'space-around' }}>
                 <TouchableOpacity style={{ ...styles.buttonStyle, backgroundColor: '#4cc2e6' }}
                   onPress={ () => { setModalVisible(true); }}
                 >
-                    <Text style={{ fontWeight: 'bold', fontSize: 21, textAlign: 'center'}}>Add Manually</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 18, textAlign: 'center'}}>Add Manually</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={{ ...styles.buttonStyle, backgroundColor: '#f7731b' }}
                   onPress={ () => { setModalVisible(true); }}
                 >
-                    <Text style={{ fontWeight: 'bold', fontSize: 21, textAlign: 'center'}}>Multiply</Text>
+                    <Text style={{ fontWeight: 'bold', fontSize: 18, textAlign: 'center'}}>Multiply</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={{ position: 'absolute', bottom: 0, width: '100%', paddingVertical: 5, paddingHorizontal: 10, justifyContent: 'space-around' }}>
+                <TouchableOpacity style={{ ...styles.buttonStyle, backgroundColor: '#87731b' }}
+                  onPress={ () => { sestDefaults; }}
+                >
+                    <Text style={{ fontWeight: 'bold', fontSize: 18, textAlign: 'center'}}>Finish</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -121,8 +156,8 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     buttonStyle: {
-        paddingVertical: 15, paddingHorizontal: 20,
-        borderRadius: 15,
+        paddingVertical: 10, paddingHorizontal: 20,
+        borderRadius: 15, marginBottom: 10
     },
     textInput: {
         height: 40, paddingHorizontal: 10, marginVertical: 20,

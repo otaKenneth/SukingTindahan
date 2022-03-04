@@ -2,6 +2,7 @@ const items = [
 	{
 		id: '1',
 		shopid: '1',
+		barcode: '4800067642556',
 		type: '561',
 		item: 'Chicharon',
 		price: '100.23',
@@ -10,6 +11,7 @@ const items = [
 	},{
 		id: '2',
 		shopid: '1',
+		barcode: '4800067642573',
 		type: '561',
 		item: 'Hotdog',
 		price: '50.00',
@@ -18,6 +20,7 @@ const items = [
 	},{
 		id: '3',
 		shopid: '1',
+		barcode: '4800067642578',
 		type: '561',
 		item: 'Diaper',
 		price: '50.00',
@@ -26,6 +29,7 @@ const items = [
 	},{
 		id: '4',
 		shopid: '1',
+		barcode: '4800047820199',
 		type: '561',
 		item: 'Diaper XL',
 		price: '60.00',
@@ -146,8 +150,13 @@ const items = [
 	},
 ];
 
-const getItems = (shop) => {
-	return items.filter(item => item.shopid == shop);
+const Items = {
+	getItems(shop) {
+		return items.filter(item => item.shopid == shop);
+	},
+	getItem(items, barcode) {
+		return items.find(item => item.barcode == barcode);
+	},
 }
 
-export default getItems;
+export default Items;
